@@ -1,36 +1,26 @@
 import React from "react";
-import axios from "axios";
+import cogoToast from "cogo-toast";
 
 function App() {
-  const fileUpLoad = () => {
-    // Post Url
-    let url = "....";
-
-    //Body Form Data
-    let myFormData = new FormData();
-    myFormData.append("file1", "fileObj1");
-    myFormData.append("file2", "fileObj2");
-    myFormData.append("file3", "fileObj3");
-
-    // Header Configuration
-    let headerConfig = {
-      headers: { "content-type": "application/x-www-form-urlencoded" },
-    };
-
-    axios
-      .post()
-      .then((res) => {
-        if (res.status === 200) {
-          let data = res.data;
-        } else {
-          //Something wrong
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const successToast = () => {
+    cogoToast.success("This is a success message!", {
+      position: "top-right",
+    });
   };
-  return <div></div>;
+  const errorToast = () => {
+    cogoToast.error("This is a error message!", { position: "top-right" });
+  };
+  return (
+    <div>
+      <button className="btn btn-success" onClick={successToast}>
+        Success
+      </button>
+      <br />
+      <button className="btn btn-danger " onClick={errorToast}>
+        Error
+      </button>
+    </div>
+  );
 }
 
 export default App;
