@@ -1,46 +1,44 @@
+import localforage from "localforage";
 import React from "react";
-import * as htmlToImage from "html-to-image";
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 
 function App() {
-  const downLoadImage = () => {
-    var myClassTable = document.getElementById("classTable");
-
-    htmlToImage
-      .toPng(myClassTable)
-      .then(function (dataUrl) {
-        var img = new Image();
-        img.src = dataUrl;
-        document.body.appendChild(img);
-      })
-      .catch(function (error) {
-        console.error("oops, something went wrong!", error);
-      });
+  const setData = () => {
+    localforage.setItem("name", "Reazul Islam", (err) => {
+      if (err) {
+        alert(err);
+      } else {
+        alert("Data Save Success");
+      }
+    });
+  };
+  const getData = () => {
+    localforage.getItem("name", (err, value) => {
+      if (err) {
+        alert(err);
+      } else {
+        alert(value);
+      }
+    });
+  };
+  const removeData = () => {
+    localforage.removeItem("name", (err) => {
+      if (err) {
+        alert(err);
+      } else {
+        alert("Data Remove Success");
+      }
+    });
   };
   return (
     <div>
-      <div id="classTable" className="container">
-        <div className="row">
-          <div className="col">
-            <table>
-              <tr>
-                <td>Name</td>
-                <td>Roll</td>
-                <td>Class</td>
-                <td>City</td>
-              </tr>
-              <tr>
-                <td>Reazul</td>
-                <td>01</td>
-                <td>15</td>
-                <td>Khulna</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-      <button onClick={downLoadImage} className="btn btn-success">
-        Download Image
+      <button onClick={setData} className="btn btn-success">
+        Set Data
+      </button>
+      <button onClick={getData} className="btn btn-primary m-5">
+        Get Data
+      </button>
+      <button onClick={removeData} className="btn btn-danger ">
+        Remove Data
       </button>
     </div>
   );
