@@ -1,19 +1,10 @@
 import React from "react";
-import readXlsxFile from "read-excel-file";
+import ReactCodeInput from "react-code-input";
 
 function App() {
-  const readExel = () => {
-    const myFile = document.getElementById("input");
-    readXlsxFile(myFile.files[0]).then((data) => {
-      alert(data);
-    });
-  };
   return (
     <div>
-      <input type="file" id="input" />
-      <button onClick={readExel} className="btn btn-success">
-        Read Excel File
-      </button>
+      <ReactCodeInput onChange={(value)=>{alert(value)}} type="number" fields={6} />
     </div>
   );
 }
