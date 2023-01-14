@@ -1,10 +1,12 @@
 import React from "react";
-import ReactCodeInput from "react-code-input";
+import Cleave from 'cleave.js/react';
 
 function App() {
   return (
     <div>
-      <ReactCodeInput onChange={(value)=>{alert(value)}} type="number" fields={6} />
+      <Cleave options={{date: true,
+          delimiter: '-',
+          datePattern: ['Y', 'm', 'd']}} />
     </div>
   );
 }
