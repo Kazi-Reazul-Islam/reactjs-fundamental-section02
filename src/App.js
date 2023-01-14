@@ -1,18 +1,18 @@
 import React from "react";
-import { AiFillHome, AiFillAccountBook, AiFillAlert } from "react-icons/ai";
+import readXlsxFile from "read-excel-file";
 
 function App() {
+  const readExel = () => {
+    const myFile = document.getElementById("input");
+    readXlsxFile(myFile.files[0]).then((data) => {
+      alert(data);
+    });
+  };
   return (
     <div>
-      <button className="btn btn-success">
-        <AiFillHome /> Set Data
-      </button>
-      <button className="btn btn-primary m-5">
-        <AiFillAccountBook /> Get Data
-      </button>
-      <button className="btn btn-danger ">
-        <AiFillAlert />
-        Remove Data
+      <input type="file" id="input" />
+      <button onClick={readExel} className="btn btn-success">
+        Read Excel File
       </button>
     </div>
   );
